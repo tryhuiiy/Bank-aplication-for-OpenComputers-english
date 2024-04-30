@@ -58,7 +58,7 @@ function transactions(id)
 end
 
 function transfer(idSender)
-    ui("Digite o Nickname do destinatário", idSender, 4)
+    ui("Enter the recipient's nickname", idSender, 4)
     NameReceiver = io.read()
     
     accountReciver = nameExists(NameReceiver)
@@ -76,11 +76,11 @@ function transfer(idSender)
     idReceiver = accountReciver
     accountReciver = getAccount(id)
     
-    ui("Digite o valor da transferência", idSender, 4)
+    ui("Enter the transfer amount", idSender, 4)
     value = io.read()
 
     if (tonumber(getAccount(idSender).balance) < tonumber(value)) then
-        ui("Saldo insuficiente", idSender, 3)
+        ui("Insufficient balance", idSender, 3)
         op = io.read()
         if (op == "0") then
             home()
@@ -95,9 +95,9 @@ function transfer(idSender)
     updateBalance(idReceiver, tonumber(getAccount(idReceiver).balance) + tonumber(value))
     
     idTransaction = transactionIds() + 1
-    addTransaction(idSender, idReceiver, value, "Transferência", idTransaction)
+    addTransaction(idSender, idReceiver, value, "Transfer", idTransaction)
 
-    ui("Transferência realizada com sucesso", idSender, 4)
+    ui("Transfer Successful", idSender, 4)
     op = io.read()
 
     accountLoggedIn(idSender)
